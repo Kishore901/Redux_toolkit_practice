@@ -37,7 +37,7 @@ export const fetchDetailsAsync = createAsyncThunk(
     const response = await axios.get(
       `http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}&Plot=full`
     );
-
+    console.log(response.data);
     return response.data;
   }
 );
@@ -47,6 +47,9 @@ const movieSlice = createSlice({
   reducers: {
     addMovies: (state, { payload }) => {
       state.movies = payload;
+    },
+    removeDetails: (state) => {
+      state.details = {};
     },
   },
   extraReducers: {
@@ -71,7 +74,7 @@ const movieSlice = createSlice({
   },
 });
 
-export const { addMovies } = movieSlice.actions;
+export const { addMovies, removeDetails } = movieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllSeries = (state) => state.movies.series;
 export const getDetails = (state) => state.movies.details;
