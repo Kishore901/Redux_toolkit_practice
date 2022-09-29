@@ -11,9 +11,9 @@ const initialState = {
 
 export const fetchAllMoviesAsync = createAsyncThunk(
   "movies/fetchAllMoviesAsync",
-  async () => {
+  async (term) => {
     const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=Harry&type=movie`
+      `http://www.omdbapi.com/?apikey=${API_KEY}&s=${term}&type=movie`
     );
 
     return response.data.Search;
@@ -22,9 +22,9 @@ export const fetchAllMoviesAsync = createAsyncThunk(
 
 export const fetchAllSeriesAsync = createAsyncThunk(
   "movies/fetchAllSeriesAsync",
-  async () => {
+  async (term) => {
     const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=Stranger&type=series`
+      `http://www.omdbapi.com/?apikey=${API_KEY}&s=${term}&type=series`
     );
 
     return response.data.Search;
